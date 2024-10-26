@@ -13,7 +13,7 @@ final class TestableTargetTests: XCTestCase {
                 name: "name"
             ),
             skipped: true,
-            parallelizable: true,
+            parallelizable: .all,
             randomExecutionOrdering: true
         )
 

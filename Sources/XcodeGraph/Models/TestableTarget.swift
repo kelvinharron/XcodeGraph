@@ -7,8 +7,8 @@ public struct TestableTarget: Equatable, Hashable, Codable, Sendable {
     public let target: TargetReference
     /// Skip test target from TestAction.
     public let isSkipped: Bool
-    /// Execute tests in parallel.
-    public let isParallelizable: Bool
+    /// Configure the parallelization used to execute tests.
+    public let parallelizable: Parallelizable
     /// Execute tests in random order.
     public let isRandomExecutionOrdering: Bool
     /// A simulated location used when testing this test target.
@@ -17,13 +17,13 @@ public struct TestableTarget: Equatable, Hashable, Codable, Sendable {
     public init(
         target: TargetReference,
         skipped: Bool = false,
-        parallelizable: Bool = false,
+        parallelizable: Parallelizable = .none,
         randomExecutionOrdering: Bool = false,
         simulatedLocation: SimulatedLocation? = nil
     ) {
         self.target = target
         isSkipped = skipped
-        isParallelizable = parallelizable
+        self.parallelizable = parallelizable
         isRandomExecutionOrdering = randomExecutionOrdering
         self.simulatedLocation = simulatedLocation
     }
@@ -35,7 +35,7 @@ public struct TestableTarget: Equatable, Hashable, Codable, Sendable {
             // swiftlint:disable:next force_try
             target: TargetReference = TargetReference(projectPath: try! AbsolutePath(validating: "/Project"), name: "App"),
             skipped: Bool = false,
-            parallelizable: Bool = false,
+            parallelizable: Parallelizable = .none,
             randomExecutionOrdering: Bool = false,
             simulatedLocation: SimulatedLocation? = nil
         ) -> TestableTarget {
