@@ -60,11 +60,14 @@ public struct TestAction: Equatable, Codable, Sendable {
 #if DEBUG
     extension TestAction {
         public static func test(
-            targets: [TestableTarget] = [TestableTarget(target: TargetReference(
-                // swiftlint:disable:next force_try
-                projectPath: try! AbsolutePath(validating: "/Project"),
-                name: "AppTests"
-            ))],
+            targets: [TestableTarget] = [TestableTarget(
+                target: TargetReference(
+                    // swiftlint:disable:next force_try
+                    projectPath: try! AbsolutePath(validating: "/Project"),
+                    name: "AppTests"
+                ),
+                parallelizable: .none
+            )],
             arguments: Arguments? = Arguments.test(),
             configurationName: String = BuildConfiguration.debug.name,
             attachDebugger: Bool = true,
