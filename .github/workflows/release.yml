@@ -23,16 +23,17 @@ jobs:
     timeout-minutes: 15
     if: "!startsWith(github.event.head_commit.message, '[Release]')"
     steps:
-      - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           fetch-depth: 0
       - uses: jdx/mise-action@v2
         with:
           experimental: true
+          version: 2024.11.8
       - name: Check if there are releasable changes
         id: is-releasable
         run: |
-          bumped_output=$(git cliff --bump)
+          bumped_output=$(git cliff --bump --unreleased)
           changelog_content=$(cat CHANGELOG.md)
 
           bumped_hash=$(echo -n "$bumped_output" | shasum -a 256 | awk '{print $1}')
@@ -50,15 +51,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: echo "NEXT_VERSION=$(git cliff --bumped-version)" >> "$GITHUB_OUTPUT"
-      - name: Get release notes
-        id: release-notes
-        if: env.should-release == 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "RELEASE_NOTES<<EOF" >> "$GITHUB_OUTPUT"
-          git cliff --unreleased >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
       - name: Update CHANGELOG.md
         if: env.should-release == 'true'
         env:
@@ -73,6 +65,15 @@ jobs:
           tagging_message: ${{ steps.next-version.outputs.NEXT_VERSION }}
           skip_dirty_check: true
           commit_message: "[Release] XcodeGraph ${{ steps.next-version.outputs.NEXT_VERSION }}"
+      - name: Get release notes
+        id: release-notes
+        if: env.should-release == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "RELEASE_NOTES<<EOF" >> "$GITHUB_OUTPUT"
+          git cliff --latest >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         if: env.should-release == 'true'

@@ -5,6 +5,83 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2024-11-27
+### Details
+#### Chore
+- Update dependency tuist to v4.36.0 by @renovate[bot] in [#83](https://github.com/tuist/XcodeGraph/pull/83)
+
+## [1.0.0] - 2024-11-22
+### Details
+#### Feat
+- Major release 1.0 by @pepicrft in [#81](https://github.com/tuist/XcodeGraph/pull/81)
+
+## [0.19.5] - 2024-11-21
+### Details
+#### Chore
+- Update dependency tuist to v4.35.0 by @renovate[bot] in [#80](https://github.com/tuist/XcodeGraph/pull/80)
+
+## [0.19.4] - 2024-11-21
+### Details
+#### Fix
+- Overlay platform-specific settings when the value does not exist by @fortmarek in [#79](https://github.com/tuist/XcodeGraph/pull/79)
+
+## [0.19.3] - 2024-11-20
+### Details
+#### Fix
+- Make Project.type non-optional by @fortmarek in [#78](https://github.com/tuist/XcodeGraph/pull/78)
+
+## [0.19.2] - 2024-11-20
+### Details
+#### Fix
+- Invocation of Project.empty() without specified ProjectType should use new method by @fortmarek in [#77](https://github.com/tuist/XcodeGraph/pull/77)
+
+## [0.19.1] - 2024-11-19
+### Details
+#### Chore
+- Fix release pipeline by @pepicrft
+
+## [0.19.0] - 2024-11-19
+### Details
+#### Feat
+- Add new `Target.metadata` attribute by @hiltonc in [#41](https://github.com/tuist/XcodeGraph/pull/41)
+
+## New Contributors
+* @hiltonc made their first contribution in [#41](https://github.com/tuist/XcodeGraph/pull/41)
+## [0.18.3] - 2024-11-15
+### Details
+#### Chore
+- Update dependency tuist to v4.34.3 by @renovate[bot] in [#76](https://github.com/tuist/XcodeGraph/pull/76)
+
+## [0.18.2] - 2024-11-15
+### Details
+#### Fix
+- Invocation of Project.test() without specified ProjectType should use new method by @fortmarek in [#75](https://github.com/tuist/XcodeGraph/pull/75)
+
+## [0.18.1] - 2024-11-14
+### Details
+#### Chore
+- Update actions/checkout digest to 11bd719 by @renovate[bot] in [#66](https://github.com/tuist/XcodeGraph/pull/66)
+
+## [0.18.0] - 2024-11-14
+### Details
+#### Feat
+- Force release by @pepicrft
+
+## [0.17.1] - 2024-11-13
+### Details
+#### Chore
+- Update dependency tuist to v4.34.0 by @renovate[bot] in [#73](https://github.com/tuist/XcodeGraph/pull/73)
+
+#### Docs
+- Add Garfeild as a contributor for code by @allcontributors[bot] in [#72](https://github.com/tuist/XcodeGraph/pull/72)
+
+## [0.17.0] - 2024-11-11
+### Details
+#### Feat
+- Add new types for embeddable SPM package by @Garfeild in [#57](https://github.com/tuist/XcodeGraph/pull/57)
+
+## New Contributors
+* @Garfeild made their first contribution in [#57](https://github.com/tuist/XcodeGraph/pull/57)
 ## [0.16.3] - 2024-11-07
 ### Details
 #### Chore
@@ -110,6 +187,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Feat
 - Add linking status to target and project by @rgnns in [#45](https://github.com/tuist/XcodeGraph/pull/45)
 
+## New Contributors
+* @danieleformichelli made their first contribution
 ## [0.11.7] - 2024-09-19
 ### Details
 #### Chore
@@ -125,6 +204,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Chore
 - Sendability conformance by @waltflanagan in [#44](https://github.com/tuist/XcodeGraph/pull/44)
 
+## New Contributors
+* @waltflanagan made their first contribution
 ## [0.11.4] - 2024-09-04
 ### Details
 #### Chore
@@ -196,12 +277,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update .all-contributorsrc [skip ci] by @allcontributors[bot]
 - Update README.md [skip ci] by @allcontributors[bot]
 
+## New Contributors
+* @filipracki made their first contribution
 ## [0.7.0] - 2024-06-25
 ### Details
 #### Docs
 - Create .all-contributorsrc [skip ci] by @allcontributors[bot]
 - Update README.md [skip ci] by @allcontributors[bot]
 
+## New Contributors
+* @darrarski made their first contribution
+[1.0.1]: https://github.com/tuist/XcodeGraph/compare/1.0.0..1.0.1
+[1.0.0]: https://github.com/tuist/XcodeGraph/compare/0.19.5..1.0.0
+[0.19.5]: https://github.com/tuist/XcodeGraph/compare/0.19.4..0.19.5
+[0.19.4]: https://github.com/tuist/XcodeGraph/compare/0.19.3..0.19.4
+[0.19.3]: https://github.com/tuist/XcodeGraph/compare/0.19.2..0.19.3
+[0.19.2]: https://github.com/tuist/XcodeGraph/compare/0.19.1..0.19.2
+[0.19.1]: https://github.com/tuist/XcodeGraph/compare/0.19.0..0.19.1
+[0.19.0]: https://github.com/tuist/XcodeGraph/compare/0.18.3..0.19.0
+[0.18.3]: https://github.com/tuist/XcodeGraph/compare/0.18.2..0.18.3
+[0.18.2]: https://github.com/tuist/XcodeGraph/compare/0.18.1..0.18.2
+[0.18.1]: https://github.com/tuist/XcodeGraph/compare/0.18.0..0.18.1
+[0.18.0]: https://github.com/tuist/XcodeGraph/compare/0.17.1..0.18.0
+[0.17.1]: https://github.com/tuist/XcodeGraph/compare/0.17.0..0.17.1
+[0.17.0]: https://github.com/tuist/XcodeGraph/compare/0.16.3..0.17.0
 [0.16.3]: https://github.com/tuist/XcodeGraph/compare/0.16.2..0.16.3
 [0.16.2]: https://github.com/tuist/XcodeGraph/compare/0.16.1..0.16.2
 [0.16.1]: https://github.com/tuist/XcodeGraph/compare/0.16.0..0.16.1

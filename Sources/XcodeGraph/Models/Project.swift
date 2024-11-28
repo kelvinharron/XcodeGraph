@@ -1,6 +1,22 @@
 import Foundation
 import Path
 
+public enum ProjectType: Hashable, Equatable, Codable, CustomStringConvertible, Sendable {
+    /// A project is a local project managed by the user.
+    case local
+    /// A project is external (e.g. represents a Swift Package project). In those cases,
+    /// a hash can be provided, from example from the resolved ref of the represented package,
+    /// to skip the file-system-based hashing.
+    case external(hash: String? = nil)
+
+    public var description: String {
+        switch self {
+        case .local: "local project"
+        case let .external(hash): "external project"
+        }
+    }
+}
+
 public struct Project: Hashable, Equatable, CustomStringConvertible, CustomDebugStringConvertible, Codable, Sendable {
     // MARK: - Attributes
 
@@ -58,8 +74,8 @@ public struct Project: Hashable, Equatable, CustomStringConvertible, CustomDebug
     /// The version in which a check happened related to recommended settings after updating Xcode.
     public var lastUpgradeCheck: Version?
 
-    /// Indicates whether the project is imported through `Package.swift`.
-    public var isExternal: Bool
+    /// It represents the type of project.
+    public var type: ProjectType
 
     // MARK: - Init
 
@@ -84,7 +100,7 @@ public struct Project: Hashable, Equatable, CustomStringConvertible, CustomDebug
     ///   - additionalFiles: The additional files to include in the project
     ///   - resourceSynthesizers: `ResourceSynthesizers` that will be applied on individual target's resources
     ///   - lastUpgradeCheck: The version in which a check happened related to recommended settings after updating Xcode.
-    ///   - isExternal: Indicates whether the project is imported through `Package.swift`.
+    ///   - type: The type of project, either local or external. This attribute supersedes `isExternal`
     public init(
         path: AbsolutePath,
         sourceRootPath: AbsolutePath,
@@ -104,7 +120,7 @@ public struct Project: Hashable, Equatable, CustomStringConvertible, CustomDebug
         additionalFiles: [FileElement],
         resourceSynthesizers: [ResourceSynthesizer],
         lastUpgradeCheck: Version?,
-        isExternal: Bool
+        type: ProjectType
     ) {
         self.path = path
         self.sourceRootPath = sourceRootPath
@@ -124,7 +140,7 @@ public struct Project: Hashable, Equatable, CustomStringConvertible, CustomDebug
         self.additionalFiles = additionalFiles
         self.resourceSynthesizers = resourceSynthesizers
         self.lastUpgradeCheck = lastUpgradeCheck
-        self.isExternal = isExternal
+        self.type = type
     }
 
     // MARK: - CustomStringConvertible
@@ -177,7 +193,7 @@ public struct Project: Hashable, Equatable, CustomStringConvertible, CustomDebug
             additionalFiles: [FileElement] = [],
             resourceSynthesizers: [ResourceSynthesizer] = [],
             lastUpgradeCheck: Version? = nil,
-            isExternal: Bool = false
+            type: ProjectType = .local
         ) -> Project {
             Project(
                 path: path,
@@ -198,7 +214,7 @@ public struct Project: Hashable, Equatable, CustomStringConvertible, CustomDebug
                 additionalFiles: additionalFiles,
                 resourceSynthesizers: resourceSynthesizers,
                 lastUpgradeCheck: lastUpgradeCheck,
-                isExternal: isExternal
+                type: type
             )
         }
 
@@ -222,7 +238,7 @@ public struct Project: Hashable, Equatable, CustomStringConvertible, CustomDebug
             additionalFiles: [FileElement] = [],
             resourceSynthesizers: [ResourceSynthesizer] = [],
             lastUpgradeCheck: Version? = nil,
-            isExternal: Bool = false
+            type: ProjectType = .external(hash: "project-hash")
         ) -> Project {
             Project(
                 path: path,
@@ -243,7 +259,7 @@ public struct Project: Hashable, Equatable, CustomStringConvertible, CustomDebug
                 additionalFiles: additionalFiles,
                 resourceSynthesizers: resourceSynthesizers,
                 lastUpgradeCheck: lastUpgradeCheck,
-                isExternal: isExternal
+                type: type
             )
         }
     }
